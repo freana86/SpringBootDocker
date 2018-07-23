@@ -11,24 +11,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
-public class DemoClientServiceImpl implements ClientService {
+public class DemoClientServiceImplMysql implements ClientService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    @Qualifier(value = "uttagPLClientImpl")
-    private UttagPLClient uttagPLClientH2;
+    @Qualifier(value = "uttagPlMySQLClient")
+    private UttagPLClient uttagClient;
 
-    private boolean isActive = true;
+    private boolean isActive = false;
     private boolean cleanDB = false;
 
     @Override
     @Scheduled(initialDelay = 1_000, fixedDelay = 2_000)
     public void processAll() {
         if(isActive) {
-            List<Uttag> uttagList = uttagPLClientH2.getAllUttag(cleanDB);
+            List<Uttag> uttagList = uttagClient.getAllUttag(cleanDB);
 
             if(!uttagList.isEmpty()) {
                 for (Uttag uttag : uttagList) {
@@ -40,13 +39,13 @@ public class DemoClientServiceImpl implements ClientService {
                 logger.info("No Uttag recieved from Server");
             }
         } else {
-            logger.info("Client not enabled.");
+            logger.info("MYSQL Client not enabled.");
         }
     }
 
     @Override
     public Uttag getUttag(Integer id) {
-        return this.uttagPLClientH2.getUttagBy(id);
+        return this.uttagClient.getUttagBy(id);
     }
 
     @Override
@@ -60,4 +59,7 @@ public class DemoClientServiceImpl implements ClientService {
         this.cleanDB = clean;
         return cleanDB;
     }
+
+
+
 }

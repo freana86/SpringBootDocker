@@ -9,8 +9,23 @@ services:
     ports:
      - 8080:8080
 
-  pl:
-    container_name: demopl
+  db:
+    container_name: database
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    expose:
+     - 3306
+    ports:
+     - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: uttag
+      MYSQL_DATABASE: uttag
+      MYSQL_USER: uttag
+      MYSQL_PASSWORD: uttag
+
+  pl-h2:
+    container_name: demoplh2
     image: demopl 
     build: ./demopl
     expose:
@@ -19,6 +34,18 @@ services:
      - 8081:8081
     depends_on:
      - uttag
+
+  pl-mysql:
+    container_name: demoplmysql
+    image: demopl-mysql
+    build: ./jdbcdemo
+    expose:
+     - 8083
+    ports:
+     - 8083:8083
+    depends_on:
+     - db
+     - uttag   
 
   client:
    container_name: democlient
@@ -29,7 +56,10 @@ services:
    ports:
     - 8082:8082
    depends_on:
-    - pl
+    - pl-h2
+
+      
+    
 
 
 

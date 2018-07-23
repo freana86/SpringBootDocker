@@ -1,4 +1,4 @@
-package com.example.pl.demopl.repository;
+package com.example.pl.demopl.controller;
 
 
 import com.example.pl.demopl.service.UttagService;
