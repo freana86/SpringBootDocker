@@ -1,5 +1,0 @@
-CREATE TABLE person (
-	id INTEGER NOT NULL AUTO_INCREMENT KEY,
-  name varchar(100) NULL,
-	age INTEGER NULL
-)
