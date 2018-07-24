@@ -4,12 +4,14 @@ import com.example.jdbc.jdbcdemo.domain.Uttag;
 import com.example.jdbc.jdbcdemo.domain.UttagBuilder;
 import com.example.jdbc.jdbcdemo.repository.UttagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@Profile("system")
 public class SystemAPI {
 
     @Autowired

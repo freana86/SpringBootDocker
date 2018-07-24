@@ -39,6 +39,8 @@ services:
     container_name: demoplmysql
     image: demopl-mysql
     build: ./jdbcdemo
+    environment:
+     - ENV=system
     expose:
      - 8083
     ports:
