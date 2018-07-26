@@ -37,10 +37,10 @@ public class DemoClientServiceImpl implements ClientService {
                     logger.info("");
                 }
             } else {
-                logger.info("No Uttag recieved from Server");
+                logger.debug("No Uttag recieved from Server");
             }
         } else {
-            logger.info("Client not enabled.");
+            logger.debug("Client not enabled.");
         }
     }
 

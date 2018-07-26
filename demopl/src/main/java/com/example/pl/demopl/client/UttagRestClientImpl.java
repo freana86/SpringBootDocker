@@ -28,13 +28,18 @@ public class UttagRestClientImpl implements UttagClient {
 
     @Override
     public List<Uttag> getUttagList() {
-        ResponseEntity<List<Uttag>> response = restTemplate.exchange(
-                this.url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Uttag>>(){});
+        try {
+            ResponseEntity<List<Uttag>> response = restTemplate.exchange(
+                    this.url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Uttag>>() {
+                    });
 
-        List<Uttag> uttagList = response.getBody();
+            List<Uttag> uttagList = response.getBody();
 
-        logger.info("Found {} Uttag to process...", uttagList.size());
-        return uttagList;
+            logger.debug("Found {} Uttag to process...", uttagList.size());
+            return uttagList;
+        } catch (Exception e){
+            throw new UttagClientException("Fel vid anrop till tjänst...", e);
+        }
     }
 
 }

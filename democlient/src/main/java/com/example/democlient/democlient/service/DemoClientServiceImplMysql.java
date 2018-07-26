@@ -36,10 +36,10 @@ public class DemoClientServiceImplMysql implements ClientService {
                     logger.info("");
                 }
             } else {
-                logger.info("No Uttag recieved from Server");
+                logger.debug("No Uttag recieved from Server");
             }
         } else {
-            logger.info("MYSQL Client not enabled.");
+            logger.debug("MYSQL Client not enabled.");
         }
     }
 

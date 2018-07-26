@@ -54,13 +54,11 @@
             <artifactId>h2</artifactId>
         </dependency>
 
-        <!-- Use MySQL Connector-J -->
-<!--
+
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
--->
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+          </dependency>
 
         <!-- HikariCP -->
         <dependency>
